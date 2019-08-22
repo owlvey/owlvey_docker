@@ -1,0 +1,36 @@
+version: "3"
+services:
+    db:
+        image: "microsoft/mssql-server-linux:2017-latest"
+        environment:
+            SA_PASSWORD: "TheFalcon123"
+            ACCEPT_EULA: "Y"
+            ASPNETCORE_ENVIRONMENT: "docker"
+            MSSQL_PID: "Express"
+        ports:
+            - "1433:1433"
+        depends_on:
+            - api
+        volumes:
+            - "dbdata_falcon:/tmp/falcon"
+        command:
+            - /bin/sh
+            - -c
+            - |
+                sleep 15s && /tmp/falcon/falcondb.sh & /opt/mssql/bin/sqlservr
+    api:
+        image: "owlvey/api:latest"
+        environment:
+            ASPNETCORE_ENVIRONMENT: "docker"
+        ports:
+            - "45001:80"
+        volumes:
+            - "dbdata_falcon:/app/data"
+    site:
+        image: "owlvey/site:latest"
+        environment:
+            ASPNETCORE_ENVIRONMENT: "docker"
+        ports:
+            - "45000:80"
+volumes:
+  dbdata_falcon:
