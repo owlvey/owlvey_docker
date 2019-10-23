@@ -10,18 +10,30 @@ services:
         ports:
             - "1433:1433"
         depends_on:
+            - authority
             - api
         volumes:
+            - "dbdata_authority:/tmp/authority"
             - "dbdata_falcon:/tmp/falcon"
         command:
             - /bin/sh
             - -c
             - |
-                sleep 15s && /tmp/falcon/falcondb.sh & /opt/mssql/bin/sqlservr
+                (sleep 30s && (/tmp/authority/authority.sh & /tmp/falcon/falcondb.sh)) & /opt/mssql/bin/sqlservr
+    authority:
+        image: "owlvey/authority:latest"
+        environment:
+            ASPNETCORE_ENVIRONMENT: "docker"
+        ports:
+            - "45002:80"
+        volumes:
+            - "dbdata_authority:/app/data"
     api:
         image: "owlvey/api:latest"
         environment:
             ASPNETCORE_ENVIRONMENT: "docker"
+            Authentication__Authority: "http://localhost:45002"
+            Settings__Api: "http://localhost:45001"
         ports:
             - "45001:80"
         volumes:
@@ -34,3 +46,4 @@ services:
             - "45000:80"
 volumes:
   dbdata_falcon:
+  dbdata_authority:
