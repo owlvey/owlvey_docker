@@ -24,6 +24,9 @@ services:
         image: "owlvey/authority:latest"
         environment:
             ASPNETCORE_ENVIRONMENT: "docker"
+            Authentication__User: "admin@owlvey.com"
+            Authentication__Password: "P@$$w0rd"
+            Authentication__Email: "admin@owlvey.com"
         ports:
             - "45002:80"
         volumes:
