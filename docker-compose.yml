@@ -1,7 +1,7 @@
 version: "3"
 services:
     db:
-        image: "microsoft/mssql-server-linux:2017-latest"
+        image: "owlvey/relational:latest"
         environment:
             SA_PASSWORD: "TheFalcon123"
             ACCEPT_EULA: "Y"
@@ -12,14 +12,6 @@ services:
         depends_on:
             - authority
             - api
-        volumes:
-            - "dbdata_authority:/tmp/authority"
-            - "dbdata_falcon:/tmp/falcon"
-        command:
-            - /bin/sh
-            - -c
-            - |
-                (sleep 30s && (/tmp/authority/authority.sh & /tmp/falcon/falcondb.sh)) & /opt/mssql/bin/sqlservr
     authority:
         image: "owlvey/authority:latest"
         environment:
@@ -29,24 +21,17 @@ services:
             Authentication__Email: "admin@owlvey.com"
         ports:
             - "45002:80"
-        volumes:
-            - "dbdata_authority:/app/data"
     api:
         image: "owlvey/api:latest"
         environment:
             ASPNETCORE_ENVIRONMENT: "docker"
-            Authentication__Authority: "http://localhost:45002"
-            Settings__Api: "http://localhost:45001"
+            Authentication__Authority: "http://10.237.245.37:45002"
+            Settings__Api: "http://10.237.245.37:45001"
         ports:
             - "45001:80"
-        volumes:
-            - "dbdata_falcon:/app/data"
     site:
         image: "owlvey/site:latest"
         environment:
             ASPNETCORE_ENVIRONMENT: "docker"
         ports:
             - "45000:80"
-volumes:
-  dbdata_falcon:
-  dbdata_authority:
