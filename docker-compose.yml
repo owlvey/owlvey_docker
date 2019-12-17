@@ -25,8 +25,8 @@ services:
         image: "owlvey/api:latest"
         environment:
             ASPNETCORE_ENVIRONMENT: "docker"
-            Authentication__Authority: "http://localhost:45002"
-            Settings__Api: "http://localhost:45001"
+            Authentication__Authority: "http://10.237.245.37:45002"
+            Settings__Api: "http://10.237.245.37:45001"
         ports:
             - "45001:80"
     site:
