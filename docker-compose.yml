@@ -10,8 +10,9 @@ services:
         ports:
             - "1433:1433"
         depends_on:
-            - authority
-            - api
+            - authority            
+        networks:
+            - owlvey-net
     authority:
         image: "owlvey/authority:latest"
         environment:
@@ -21,17 +22,58 @@ services:
             Authentication__Email: "admin@owlvey.com"
         ports:
             - "45002:80"
+        networks:
+            - owlvey-net
     api:
         image: "owlvey/api:latest"
         environment:
             ASPNETCORE_ENVIRONMENT: "docker"
-            Authentication__Authority: "http://10.237.245.37:45002"
-            Settings__Api: "http://10.237.245.37:45001"
+            Authentication__Authority: "http://${OWLVEY_HOST}:45002"
+            Settings__Api: "http://${OWLVEY_HOST}:45001"
         ports:
             - "45001:80"
+        networks:
+            - owlvey-net
+        depends_on:
+            - db
+            - authority
     site:
         image: "owlvey/site:latest"
         environment:
             ASPNETCORE_ENVIRONMENT: "docker"
         ports:
             - "45000:80"
+        networks:
+            - owlvey-net
+    notification:
+        image: "owlvey/notifications:latest"
+        environment:
+            owlvey_slack_key: "console"
+            falcon_https_proxy: ""
+            falcon_http_proxy: ""
+        ports:
+            - "45003:45003"
+        depends_on:
+            - authority
+            - db
+            - api
+            - site
+        networks:
+            - owlvey-net
+    worker:
+        image: "owlvey/worker:latest"
+        environment:
+            owlvey_notification_api: "http://${OWLVEY_HOST}:45003"
+            owlvey_api: "http://${OWLVEY_HOST}:45001"
+            owlvey_site: "http://${OWLVEY_HOST}:45000"
+            owlvey_identity: "http://${OWLVEY_HOST}:45002"
+            owlvey_client_id: "CF4A9ED44148438A99919FF285D8B48D"
+            owlvey_secret_key: "0da45603-282a-4fa6-a20b-2d4c3f2a2127"
+        depends_on:
+            - notification
+        networks:
+            - owlvey-net
+
+networks:
+  owlvey-net:
+    external: false
