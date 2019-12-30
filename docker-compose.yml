@@ -18,7 +18,7 @@ services:
         environment:
             ASPNETCORE_ENVIRONMENT: "docker"
             Authentication__User: "admin@owlvey.com"
-            Authentication__Password: "P@$$w0rd"
+            Authentication__Password: "0wlv3y@"
             Authentication__Email: "admin@owlvey.com"
         ports:
             - "45002:80"
