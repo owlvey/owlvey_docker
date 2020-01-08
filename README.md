@@ -8,16 +8,13 @@ https://owlvey.visualstudio.com/falcon/_build?definitionId=6
 
 ## Getting started
 
-First, run the following command in terminal:
+First, clone repository:
 
-    docker-compose pull
+    update start.bat or start.bash with your network IP
 
-* Important, replace in docker-compose file the "localhost" value to your host ip.
-
-You have to wait while Docker pulls the containers from the Docker Hub: <a target="_blank" href="https://hub.docker.com/u/owlvey/">Owlvey</a>
 
 Then, run the following command in terminal:
 
-    docker-compose up
+    bash start.bash
 
 Then open your browser to `http://youripindockercomposefile:45000`
