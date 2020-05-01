@@ -1,4 +1,4 @@
-# owlvey_docker
+## owlvey_docker
 owlvey docker repository
 
 ## CI CD
@@ -6,7 +6,7 @@ owlvey docker repository
 https://owlvey.visualstudio.com/falcon/_build?definitionId=6
 
 
-## Getting started
+## Getting started with start.bash or start.bash
 
 First, clone repository:
 
@@ -14,7 +14,18 @@ First, clone repository:
 
 
 Then, run the following command in terminal:
-
-    bash start.bash
+	
+	Linux SO:
+	```sh start.bash```
 
 Then open your browser to `http://youripindockercomposefile:45000`
+
+## Getting Start with start_automatic.bash 
+
+	Linux SO:
+	sh start_automatic.bash
+
+
+More information:
+
+```https://github.com/owlvey/owlvey_documentation```
