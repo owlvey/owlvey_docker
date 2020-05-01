@@ -54,7 +54,7 @@ show_menus() {
         echo "  OWLVEY - SRE : Chooses the network interface  "
         echo "~~~~~~~~~~~~~~~~~~~~~"
         echo "1. macos_en0"
-	echo "2. linux_linux0"
+	echo "2. linux_ens160"
         echo "3. Exit"
 }
 # Read input action in terminal and execute

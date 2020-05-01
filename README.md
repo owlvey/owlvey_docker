@@ -16,7 +16,7 @@ First, clone repository:
 Then, run the following command in terminal:
 	
 	Linux SO:
-	```sh start.bash```
+	sh start.bash
 
 Then open your browser to `http://youripindockercomposefile:45000`
 
