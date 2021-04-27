@@ -1,31 +1,15 @@
-## owlvey_docker
-owlvey docker repository
+# owlvey_docker
 
-## CI CD
+## Steps to run 
 
-https://owlvey.visualstudio.com/falcon/_build?definitionId=6
+- clone repository
 
+- unzip template / generate_data.csv.zip in the same folder
 
-## Getting started with start.bash or start.bash
+- validate don't use ports 3306, 3000
 
-First, clone repository:
+- execute docker-compose pull
 
-    update start.bat or start.bash with your network IP
+- execute docker-compose up
 
-
-Then, run the following command in terminal:
-	
-	Linux SO:
-	sh start.bash
-
-Then open your browser to `http://youripindockercomposefile:45000`
-
-## Getting Start with start_automatic.bash 
-
-	Linux SO:
-	sh start_automatic.bash
-
-
-More information:
-
-```https://github.com/owlvey/owlvey_documentation```
+- navagate localhost:3000 using docker compose registered username (admin) and password (owlvey).

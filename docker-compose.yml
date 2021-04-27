@@ -11,6 +11,7 @@ services:
             - owlvey-net    
     owlvey_grafana:
         image: "owlvey/grafana-owlvey:latest"        
+        restart: always
         depends_on:
             - owlvey_state
         environment:                                  
@@ -31,13 +32,13 @@ services:
         # /Users/Gregory/nike/nike_discovery/metadata
         # /Users/Gregory/owlvey/archon/template
         - type: bind
-          source: /Users/Gregory/owlvey/archon/template
+          source: /Users/Gregory/nike/nike_discovery/metadata
           target: /workspace/metadata
         
         # /Users/Gregory/nike/nike_discovery/wip/data
         # /Users/Gregory/owlvey/archon/template
         - type: bind
-          source: /Users/Gregory/owlvey/archon/template
+          source: /Users/Gregory/nike/nike_discovery/wip/data
           target: /workspace/data            
 
         environment:                                          
