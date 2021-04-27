@@ -15,7 +15,8 @@ services:
             - owlvey_state
         environment:                                  
             GF_SECURITY_ADMIN_USER: "admin"
-            GF_SECURITY_ADMIN_PASSWORD: "owlvey"                    
+            GF_SECURITY_ADMIN_PASSWORD: "owlvey"
+            GF_LOG_LEVEL: "error"            
         ports:
             - "3000:3000"        
         networks:
@@ -25,21 +26,22 @@ services:
         image: "owlvey/archon:latest"
         depends_on:
         - owlvey_state
-        volumes:
-        - type: bind
-          source: /workspace/gregory/owlvey/archon/system_docker.yaml
-          target: /workspace/config.yaml
+        volumes:        
 
+        # /Users/Gregory/nike/nike_discovery/metadata
+        # /Users/Gregory/owlvey/archon/template
         - type: bind
-          source: /workspace/gregory/owlvey/metadata
+          source: /Users/Gregory/owlvey/archon/template
           target: /workspace/metadata
         
+        # /Users/Gregory/nike/nike_discovery/wip/data
+        # /Users/Gregory/owlvey/archon/template
         - type: bind
-          source: /workspace/gregory/owlvey/data
+          source: /Users/Gregory/owlvey/archon/template
           target: /workspace/data            
 
         environment:                                          
-            OWLVEY_CONFIG: "/workspace/config.yaml"
+            OWLVEY_CONFIG: "/deployment/system_docker.yaml" # default configuration
             OWLVEY_LOGGING: "WARNING"            
         ports:
             - "50001:50001"
