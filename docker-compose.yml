@@ -28,14 +28,14 @@ services:
         depends_on:
         - owlvey_state
         volumes:        
-        # /Users/Gregory/nike/nike_discovery/metadata
-        # /Users/Gregory/owlvey/archon/template
+        
+        
         - type: bind
           source: ./template 
           target: /workspace/metadata
         
-        # /Users/Gregory/nike/nike_discovery/wip/data
-        # /Users/Gregory/owlvey/archon/template
+        
+        
         - type: bind
           source: ./template
           target: /workspace/data            

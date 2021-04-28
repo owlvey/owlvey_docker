@@ -12,6 +12,8 @@
 
 - execute docker-compose up
 
+- wait a couple of minutes to process date and generate reports
+
 - navagate localhost:3000 using docker compose registered username (admin) and password (owlvey)
 
 ## Images 
