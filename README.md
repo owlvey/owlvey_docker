@@ -12,4 +12,9 @@
 
 - execute docker-compose up
 
-- navagate localhost:3000 using docker compose registered username (admin) and password (owlvey).
+- navagate localhost:3000 using docker compose registered username (admin) and password (owlvey)
+
+## Images 
+
+![Alt text](images/login.png?raw=true "Login")
+.
