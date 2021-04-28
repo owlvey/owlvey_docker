@@ -16,5 +16,5 @@
 
 ## Images 
 
-![Alt text](images/login.png?raw=true "Login")
+![Alt text](images/login.png?raw=true&=250x "Login")
 .
