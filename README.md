@@ -16,5 +16,14 @@
 
 ## Images 
 
-![Alt text](images/login.png?raw=true&=250x "Login")
+### Squads
+![Alt text](images/squads.png?raw=true "Squads")
+
+### Monthly
+![Alt text](images/monthly.png?raw=true "Monthly report")
+
+### Journeys
+![Alt text](images/journeys.png?raw=true "Journeys")
+
+
 .
